@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
     'accounts',
     'instagram',
 ]
@@ -124,6 +125,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK  = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
     'PAGE_SIZE': 5,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'DEFAULT_PERMISSION_CLASSES': [
@@ -140,3 +147,6 @@ REST_FRAMEWORK  = {
     },
 }
 
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+}
